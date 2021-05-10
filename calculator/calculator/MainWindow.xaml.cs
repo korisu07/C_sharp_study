@@ -24,5 +24,15 @@ namespace calculator
         {
             InitializeComponent();
         }
+
+        // 押したボタンに設定されているNameの値を取得して、
+        // 数字だけを取り出し、値を返す関数
+        private void Button_Click_Number(object sender, RoutedEventArgs e)
+        {
+            String Str = ((Button)sender).Name;
+            String NewStr = Str.Replace("btn", "");
+            MessageBox.Show( NewStr );
+        }
+
     }
 }
