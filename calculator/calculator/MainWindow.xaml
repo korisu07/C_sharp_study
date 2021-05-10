@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:calculator"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="700" Width="450">
     <Grid>
+        <Button Content="0" Name="btn0" HorizontalAlignment="Left" Height="70"  Width="70" Margin="30,595,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI" Click="Button_Click_Number"/>
+        <Button Content="(" HorizontalAlignment="Left" Height="70"  Width="70" Margin="120,595,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="." HorizontalAlignment="Left" Height="70"  Width="70" Margin="210,595,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
 
+        <Button Content="1" Name="btn1" HorizontalAlignment="Left" Height="70"  Width="70" Margin="32,505,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="2" Name="btn2" HorizontalAlignment="Left" Height="70"  Width="70" Margin="120,505,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="3" Name="btn3" HorizontalAlignment="Left" Height="70"  Width="70" Margin="210,505,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+
+        <Button Content="4" Name="btn4" HorizontalAlignment="Left" Height="70"  Width="70" Margin="32,415,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+
+        <Button Content="5" Name="btn5" HorizontalAlignment="Left" Height="70"  Width="70" Margin="120,415,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="6" Name="btn6" HorizontalAlignment="Left" Height="70"  Width="70" Margin="210,415,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+
+        <Button Content="7" Name="btn7" HorizontalAlignment="Left" Height="70"  Width="70" Margin="32,325,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="8" Name="btn8" HorizontalAlignment="Left" Height="70"  Width="70" Margin="120,325,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="9" Name="btn9" HorizontalAlignment="Left" Height="70"  Width="70" Margin="210,325,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="AC" HorizontalAlignment="Left" Height="70"  Width="70" Margin="32,220,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="C" HorizontalAlignment="Left" Height="70"  Width="70" Margin="120,220,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="+/-" HorizontalAlignment="Left" Height="70"  Width="70" Margin="210,220,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="÷" HorizontalAlignment="Left" Height="70"  Width="70" Margin="340,220,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Yu Gothic UI"/>
+        <Button Content="-" HorizontalAlignment="Left" Height="70"  Width="70" Margin="340,415,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Yu Gothic UI"/>
+        <Button Content="×" HorizontalAlignment="Left" Height="70"  Width="70" Margin="340,325,0,0" VerticalAlignment="Top" FontSize="30" FontFamily="Yu Gothic UI"/>
+        <Button Content="+" HorizontalAlignment="Left" Height="70"  Width="70" Margin="340,505,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Yu Gothic UI"/>
+        <Button Content="=" HorizontalAlignment="Left" Height="70"  Width="70" Margin="340,595,0,0" VerticalAlignment="Top" FontSize="40" FontFamily="Yu Gothic UI"/>
+        <Label Content="..." HorizontalAlignment="Left" Height="100" Width="380" Margin="32,35,0,0" VerticalAlignment="Top" FontSize="35"/>
+        <Label Content="..." HorizontalAlignment="Left" Height="50" Width="380" Margin="32,135,0,0" VerticalAlignment="Top" FontSize="35"/>
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="150" Width="380" Margin="32,35,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
