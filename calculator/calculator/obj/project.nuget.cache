@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "G21sBgfzRzTIVx7p/kQs6ghN0rYXFN/kgEPa15p0lZhHuSMGqXArioHgzRapXyoBv9GKBcLwg7hULIytiExCwQ==",
+  "dgSpecHash": "W7eRYPl81hIX9Ik0MyWgLEmsCkgUlg/CMQ9RlkUdzrBl9/f4X/idx1gQ6ryayWqIjHmMZJYhyaMawgdb4MUUDQ==",
   "success": true,
-  "projectFilePath": "D:\\000_works\\05_C#_study\\calculator\\calculator\\calculator.csproj",
+  "projectFilePath": "D:\\000_works\\05_C#_study\\Calculator\\calculator\\calculator.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
