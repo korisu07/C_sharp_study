@@ -30,6 +30,10 @@ namespace calculator
 
         private String CalcResult;
 
+        // 先頭の括弧がすでに入力されているかを判別する
+        // trueであれば、入力されている状態
+        private bool BoolEnteredbrackets = false;
+
 
         // 押したボタンに設定されている数字を取得して、
         // 数字を入力するための処理
@@ -52,6 +56,24 @@ namespace calculator
         {
             TopViewbox.Text = this.CalcProcess;
             BottomViewbox.Text = this.CalcResult;
+        }
+
+        // 計算記号を入力した場合の処理
+        private void ClickCalcSymbols(object sender, RoutedEventArgs e)
+        {
+            // 入力された計算式のシンボルを取得し、
+            // 前後に半角スペースを追加
+            String ClickSymbols = " " + ((Button)sender).Content.ToString() + " ";
+
+            // 元々入力されていた数字や計算式と連結させる
+            this.CalcProcess = this.CalcProcess + ClickSymbols;
+
+            // 入力された値を表示する
+            this.ViewEnteredNumber();
+
+            // 前回入力されていた数字をリセット
+            this.CalcResult = null;
+
         }
 
     }
