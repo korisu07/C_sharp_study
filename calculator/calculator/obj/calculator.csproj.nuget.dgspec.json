@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\000_works\\05_C#_study\\calculator\\calculator\\calculator.csproj": {}
+    "D:\\000_works\\05_C#_study\\Calculator\\calculator\\calculator.csproj": {}
   },
   "projects": {
-    "D:\\000_works\\05_C#_study\\calculator\\calculator\\calculator.csproj": {
+    "D:\\000_works\\05_C#_study\\Calculator\\calculator\\calculator.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\000_works\\05_C#_study\\calculator\\calculator\\calculator.csproj",
+        "projectUniqueName": "D:\\000_works\\05_C#_study\\Calculator\\calculator\\calculator.csproj",
         "projectName": "calculator",
-        "projectPath": "D:\\000_works\\05_C#_study\\calculator\\calculator\\calculator.csproj",
+        "projectPath": "D:\\000_works\\05_C#_study\\Calculator\\calculator\\calculator.csproj",
         "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "D:\\000_works\\05_C#_study\\calculator\\calculator\\obj\\",
+        "outputPath": "D:\\000_works\\05_C#_study\\Calculator\\calculator\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
