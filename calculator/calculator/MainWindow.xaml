@@ -13,37 +13,38 @@
             <ColumnDefinition Width="160"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="490*"/>
+            <RowDefinition Height="320*"/>
+            <RowDefinition Height="150*"/>
             <RowDefinition Height="30*"/>
         </Grid.RowDefinitions>
 
 
-        <Button Content="0" Name="btn0" HorizontalAlignment="Left" Height="50"  Width="50" Margin="30,0,0,20" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
-        <Button Content="(" HorizontalAlignment="Left" Height="50"  Width="50" Margin="95,0,0,20" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
-        <Button Content="." HorizontalAlignment="Left" Height="50"  Width="50" Margin="160,0,0,20" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
+        <Button Content="0" Name="btn0" HorizontalAlignment="Left" Height="50" Width="50" Margin="30,85,0,15" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="(" HorizontalAlignment="Left" Height="50" Width="50" Margin="95,0,0,15" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="." HorizontalAlignment="Left" Height="50"  Width="50" Margin="160,0,0,15" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1" Grid.Row="1"/>
 
-        <Button Content="1" Name="btn1" HorizontalAlignment="Left" Height="50"  Width="50" Margin="30,0,0,80" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
-        <Button Content="2" Name="btn2" HorizontalAlignment="Left" Height="50"  Width="50" Margin="95,0,0,80" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
-        <Button Content="3" Name="btn3" HorizontalAlignment="Left" Height="50"  Width="50" Margin="160,0,0,80" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
+        <Button Content="1" Name="btn1" HorizontalAlignment="Left" Height="50"  Width="50" Margin="30,0,0,75" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="2" Name="btn2" HorizontalAlignment="Left" Height="50"  Width="50" Margin="95,0,0,75" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="3" Name="btn3" HorizontalAlignment="Left" Height="50"  Width="50" Margin="160,0,0,75" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1" Grid.Row="1"/>
 
-        <Button Content="4" Name="btn4" HorizontalAlignment="Left" Height="50"  Width="50" Margin="30,0,0,145" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
+        <Button Content="4" Name="btn4" HorizontalAlignment="Left" Height="50"  Width="50" Margin="30,0,0,135" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1" Grid.RowSpan="2"/>
 
-        <Button Content="5" Name="btn5" HorizontalAlignment="Left" Height="50"  Width="50" Margin="95,0,0,145" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
-        <Button Content="6" Name="btn6" HorizontalAlignment="Left" Height="50"  Width="50" Margin="160,0,0,145" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" RenderTransformOrigin="-0.09,0.071" Click="Button_Click_Number" Grid.Column="1"/>
+        <Button Content="5" Name="btn5" HorizontalAlignment="Left" Height="50"  Width="50" Margin="95,0,0,135" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1" Grid.RowSpan="2"/>
+        <Button Content="6" Name="btn6" HorizontalAlignment="Left" Height="50"  Width="50" Margin="160,0,0,135" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" RenderTransformOrigin="-0.09,0.071" Click="Button_Click_Number" Grid.Column="1" Grid.RowSpan="2"/>
 
-        <Button Content="7" Name="btn7" HorizontalAlignment="Left" Height="51"  Width="50" Margin="30,0,0,205" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
-        <Button Content="8" Name="btn8" HorizontalAlignment="Left" Height="51"  Width="50" Margin="95,0,0,205" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
-        <Button Content="9" Name="btn9" HorizontalAlignment="Left" Height="51"  Width="50" Margin="160,0,0,205" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" RenderTransformOrigin="-0.06,0.491" Click="Button_Click_Number" Grid.Column="1"/>
-        <Button Content="AC" HorizontalAlignment="Left" Height="50"  Width="50" Margin="30,0,0,275" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
-        <Button Content="C" HorizontalAlignment="Left" Height="50"  Width="50" Margin="95,0,0,275" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
-        <Button Content="+/-" HorizontalAlignment="Left" Height="50"  Width="50" Margin="160,0,0,275" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
-        <Button Content="÷" HorizontalAlignment="Left" Height="50"  Width="50" Margin="240,0,0,275" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Grid.Column="1"/>
-        <Button Content="-" HorizontalAlignment="Left" Height="50"  Width="50" Margin="240,0,0,145" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Grid.Column="1"/>
-        <Button Content="×" HorizontalAlignment="Left" Height="51"  Width="50" Margin="240,0,0,205" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
-        <Button Content="+" HorizontalAlignment="Left" Height="50"  Width="50" Margin="240,0,0,80" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Grid.Column="1"/>
-        <Button Content="=" HorizontalAlignment="Left" Height="50"  Width="50" Margin="240,0,0,20" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Grid.Column="1"/>
-        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Center" Height="125" Width="260" Margin="0,0,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label Content="..." HorizontalAlignment="Center" Height="75" Width="250" Margin="0,0,0,0" VerticalAlignment="Top" FontSize="20" Grid.Column="1"/>
+        <Button Content="7" Name="btn7" HorizontalAlignment="Left" Height="50"  Width="50" Margin="30,0,0,45" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
+        <Button Content="8" Name="btn8" HorizontalAlignment="Left" Height="50"  Width="50" Margin="95,0,0,45" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="Button_Click_Number" Grid.Column="1"/>
+        <Button Content="9" Name="btn9" HorizontalAlignment="Left" Height="50"  Width="50" Margin="160,0,0,45" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" RenderTransformOrigin="-0.06,0.491" Click="Button_Click_Number" Grid.Column="1"/>
+        <Button Content="AC" HorizontalAlignment="Left" Height="50"  Width="50" Margin="30,0,0,118" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
+        <Button Content="C" HorizontalAlignment="Left" Height="50"  Width="50" Margin="95,0,0,118" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
+        <Button Content="+/-" HorizontalAlignment="Left" Height="50"  Width="50" Margin="160,0,0,118" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
+        <Button Content="÷" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,118" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Grid.Column="1"/>
+        <Button Content="×" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,45" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Grid.Column="1"/>
+        <Button Content="-" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,135" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Grid.Column="1" Grid.RowSpan="2"/>
+        <Button Content="+" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,75" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="=" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,15" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Grid.Column="1" Grid.Row="1"/>
+        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Center" Height="125" Width="260" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label Content="..." HorizontalAlignment="Center" Height="75" Width="250" VerticalAlignment="Top" FontSize="20" Grid.Column="1"/>
         <Label Content="..." HorizontalAlignment="Center" Height="45" Width="250" Margin="0,75,0,0" VerticalAlignment="Top" FontSize="20" Grid.Column="1"/>
 
 
