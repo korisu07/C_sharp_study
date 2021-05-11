@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace calculator
 {
@@ -25,13 +26,32 @@ namespace calculator
             InitializeComponent();
         }
 
-        // 押したボタンに設定されているNameの値を取得して、
-        // 数字だけを取り出し、値を返す関数
+        private String CalcProcess;
+
+        private String CalcResult;
+
+
+        // 押したボタンに設定されている数字を取得して、
+        // 数字を入力するための処理
         private void Button_Click_Number(object sender, RoutedEventArgs e)
         {
-            String Str = ((Button)sender).Name;
-            String NewStr = Str.Replace("btn", "");
-            MessageBox.Show( NewStr );
+            // 入力された数字を取得
+            String ClickNumber = ((Button)sender).Content.ToString();
+
+            // 元々入力されていた数字や計算式と連結させる
+            this.CalcProcess = this.CalcProcess + ClickNumber;
+            this.CalcResult = this.CalcResult + ClickNumber;
+
+            // 入力された値を表示する
+            this.ViewEnteredNumber();
+
+        }
+
+        // 入力された数字や計算式を、画面上に表示する処理
+        private void ViewEnteredNumber()
+        {
+            TopViewbox.Text = this.CalcProcess;
+            BottomViewbox.Text = this.CalcResult;
         }
 
     }
