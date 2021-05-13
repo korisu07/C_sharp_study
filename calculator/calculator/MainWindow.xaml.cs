@@ -97,12 +97,9 @@ namespace calculator
             // 記号が未入力の場合
             if( this.BoolEnteredSymbols == false)
             {
-                this.BoolEnteredSymbols = true;
 
-                // 元々入力されていた数字や計算式と連結させる
-                this.ViewerProcess = this.ViewerProcess + ClickSymbols;
-            } else
-            {
+            } // 記号が入力されている場合
+            else {
                 
             }
 
@@ -118,18 +115,19 @@ namespace calculator
         private void ResultCalc(object sender, RoutedEventArgs e)
         {
 
-            Double d;
+            //Double d;
 
-             String testStr = "+";
+             //String testStr = "+";
 
-             if( Double.TryParse(testStr, out d) )
-             {
-                 Double.TryParse(testStr, out d);
-                 MessageBox.Show(d.ToString());
-             } else
-             {
-                 MessageBox.Show(testStr);
-             }
+
+             //if( Double.TryParse(testStr, out d) )
+             //{
+             //    Double.TryParse(testStr, out d);
+             //   MessageBox.Show(d.ToString());
+
+             //} else {
+             //    MessageBox.Show(testStr);
+             // }
 
 
         }
