@@ -42,7 +42,7 @@
         <Button Content="×" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,45" VerticalAlignment="Bottom" FontSize="25" FontFamily="Yu Gothic UI" Click="ClickCalcSymbols" Grid.Column="1"/>
         <Button Content="-" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,135" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Click="ClickCalcSymbols" Grid.Column="1" Grid.RowSpan="2"/>
         <Button Content="+" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,75" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Click="ClickCalcSymbols" Grid.Column="1" Grid.Row="1"/>
-        <Button Content="=" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,15" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Grid.Column="1" Grid.Row="1"/>
+        <Button Content="=" HorizontalAlignment="Right" Height="50"  Width="50" Margin="0,0,30,15" VerticalAlignment="Bottom" FontSize="35" FontFamily="Yu Gothic UI" Click="ResultCalc" Grid.Column="1" Grid.Row="1"/>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Center" Height="125" Width="260" VerticalAlignment="Top" Grid.Column="1"/>
 
         <Viewbox HorizontalAlignment="Left" Height="85" Width="260" Margin="30,0,0,0" VerticalAlignment="Top" Grid.Column="1">
