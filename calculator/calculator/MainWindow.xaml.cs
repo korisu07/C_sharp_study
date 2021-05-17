@@ -61,8 +61,14 @@ namespace calculator
         // ★ON/OFFを判別するための設定
         //
 
+        // 以下は、trueであれば、入力されている状態
+        // 数字が入力されているかを判別する
+        private bool BoolEnteredNumber = false;
+
+        // 計算式が入力されているかを判別する
+        private bool BoolEnteredCalc = false;
+
         // 先頭の括弧がすでに入力されているかを判別する
-        // trueであれば、入力されている状態
         private bool BoolEnteredbrackets = false;
 
 
@@ -72,12 +78,23 @@ namespace calculator
 
         // 入力された数字や計算式を、画面上に表示する処理
         // AddStr → 後ろに追加する文字列を代入
-        private void ViewEnteredBtn(String TopStr = "", String BottomStr = "")
+        private void ViewEnteredBtn()
         {
-            this.ViewerTop += TopStr;
-            this.ViewerBottom += BottomStr;
+            // 初期化
+            String TopStr = null;
 
-            TopViewbox.Text = this.ViewerTop;
+            // Listに値が格納されていれば発動
+            if(this.ListCalcProcess != null)
+            {
+                // List内に登録されている値をつなげていき、一つの文字列にする
+                foreach(String CalcStr in this.ListCalcProcess)
+                {
+                    TopStr += CalcStr;
+                }
+            }
+
+            // 上段と下段にそれぞれ反映
+            TopViewbox.Text = TopStr;
             BottomViewbox.Text = this.ViewerBottom;
         }
 
@@ -86,7 +103,7 @@ namespace calculator
         private void ClickNumberAction(object sender, RoutedEventArgs e)
         {
             // 計算記号がすでに登録されている場合
-            if (this.EnteredCalcSymbols != null)
+            if ( this.BoolEnteredCalc )
             {
                 // 下段の値をリセット
                 this.ViewerBottom = null;
@@ -95,6 +112,8 @@ namespace calculator
                 AddBtnValueToList( this.EnteredCalcSymbols );
                 // 計算記号をリセット
                 this.EnteredCalcSymbols = null;
+                // フラグをリセット
+                this.BoolEnteredCalc = false;
             }
 
             // 新たに入力された数字を取得し、文字列に変換
@@ -103,10 +122,14 @@ namespace calculator
             // 入力済みの数字＋新たに入力された数字をくっつける
             this.RealtimeEnterNum += ClickBtnNumber;
 
-            // 上段と下段に入力中の計算式を表示させる
+            // 上段と下段に入力中の数字を反映させる
+            this.ViewerTop += ClickBtnNumber;
+            this.ViewerBottom += ClickBtnNumber;
 
             // 画面に反映
-            ViewEnteredBtn( ClickBtnNumber, ClickBtnNumber );
+            ViewEnteredBtn();
+            // 数字が登録されているフラグをON
+            this.BoolEnteredNumber = true;
 
         } // end void ClickNumberAction.
 
@@ -115,18 +138,31 @@ namespace calculator
         private void ClickCalcSymbols(object sender, RoutedEventArgs e)
         {
             // すでに数字ボタンが入力されている場合
-            if ( this.RealtimeEnterNum != null )
+            if ( this.BoolEnteredNumber )
             {
+                // 計算式が登録されていなければ、先に入力されていた数値を登録
+                if( this.BoolEnteredCalc == false)
+                {
+                    // 数字をリストに追加
+                    AddBtnValueToList(this.RealtimeEnterNum);
+                    // 格納していた値をリセット
+                    this.RealtimeEnterNum = null;
+                    // フラグをリセット
+                    this.BoolEnteredNumber = false;
+                }
+
                 // 新たに入力されたボタンを取得し、文字列に変換
                 String Symbols = ((Button)sender).Content.ToString();
                 // 計算記号を、変数へ格納する
-                this.EnteredCalcSymbols = Symbols;
+                this.EnteredCalcSymbols =  " " + Symbols + " ";
 
                 // 画面に反映
-                // 上段にのみ、入力中の計算式を表示させる
-                ViewEnteredBtn(" " + Symbols + " ");
+                ViewEnteredBtn();
+                // 計算記号が登録されているフラグをON
+                this.BoolEnteredCalc = true;
+
             } //なにも入力されていない場合
-            else
+            else 
             {
                 // なにもしない
                 return;
