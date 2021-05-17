@@ -35,11 +35,9 @@ namespace calculator
 
         // 数字の入力ケタが確定した際に、数字を格納する
         // 計算記号もここへ
-        private Array CalcProcess;
+        private List ListCalcProcess;
 
         private int CalcResult;
-
-        private String[] ArrayCalcProcess;
 
 
         // すでに計算記号が入力されているかを判別する
@@ -55,9 +53,27 @@ namespace calculator
         // 数字を入力するための処理
         private void Button_Click_Number(object sender, RoutedEventArgs e)
         {
+            // 入力された数字を取得し、数字に変換
+            String StrEnteredNumber = ((Button)sender).Content.ToString();
+            int ClickNumber = int.Parse(StrEnteredNumber);
 
+            
 
         }
+
+        // 入力された値をListに格納する処理
+        // 数字が入力された場合
+        private static void AddBtnToList(int Number)
+        {
+
+        }
+
+        // 計算記号が入力された場合
+        private static void AddBtnToList(String Str)
+        {
+
+        }
+
 
         private void ConvertArray(String str, RoutedEventArgs e)
         {
