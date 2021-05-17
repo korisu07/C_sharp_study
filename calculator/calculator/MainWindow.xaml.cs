@@ -55,20 +55,7 @@ namespace calculator
         // 数字を入力するための処理
         private void Button_Click_Number(object sender, RoutedEventArgs e)
         {
-            // 計算記号が入力されているフラグをリセット
-            this.BoolEnteredSymbols = false;
 
-
-            // 入力された数字を取得し、数字に変換
-            String StrEnteredNumber = ((Button)sender).Content.ToString();
-            int ClickNumber = int.Parse( StrEnteredNumber );
-
-            // 元々入力されていた数字や計算式と連結させる
-            this.ViewerProcess = this.ViewerProcess + ClickNumber;
-            this.ViewerResult = this.ViewerResult + ClickNumber;
-
-            // 入力された値を表示する
-            this.ViewEnteredNumber();
 
         }
 
@@ -83,51 +70,21 @@ namespace calculator
         // 入力された数字や計算式を、画面上に表示する処理
         private void ViewEnteredNumber()
         {
-            TopViewbox.Text = this.ViewerProcess;
-            BottomViewbox.Text = this.ViewerResult;
+            //TopViewbox.Text = this.ViewerProcess;
+            //BottomViewbox.Text = this.ViewerResult;
         }
 
         // 計算記号を入力した場合の処理
         private void ClickCalcSymbols(object sender, RoutedEventArgs e)
         {
-            // 入力された計算式のシンボルを取得し、
-            // 前後に半角スペースを追加
-            String ClickSymbols = " " + ((Button)sender).Content.ToString() + " ";
 
-            // 記号が未入力の場合
-            if( this.BoolEnteredSymbols == false)
-            {
-
-            } // 記号が入力されている場合
-            else {
-                
-            }
-
-
-            // 入力された値を表示する
-            this.ViewEnteredNumber();
-
-            // 表示し配列に格納後、前回入力されていた数字をリセット
-            this.ViewerResult = null;
 
         }
 
         private void ResultCalc(object sender, RoutedEventArgs e)
         {
 
-            //Double d;
 
-             //String testStr = "+";
-
-
-             //if( Double.TryParse(testStr, out d) )
-             //{
-             //    Double.TryParse(testStr, out d);
-             //   MessageBox.Show(d.ToString());
-
-             //} else {
-             //    MessageBox.Show(testStr);
-             // }
 
 
         }
