@@ -50,26 +50,26 @@ namespace calculator
 
 
         // 押したボタンに設定されている数字を取得して、
-        // 数字を入力するための処理
-        private void Button_Click_Number(object sender, RoutedEventArgs e)
+        // 数字ボタンが入力された場合の処理
+        private void ClickNumberAction(object sender, RoutedEventArgs e)
         {
             // 入力された数字を取得し、数字に変換
             String StrEnteredNumber = ((Button)sender).Content.ToString();
             int ClickNumber = int.Parse(StrEnteredNumber);
 
-            
+            AddBtnValueToList( ClickNumber );
 
         }
 
         // 入力された値をListに格納する処理
         // 数字が入力された場合
-        private static void AddBtnToList(int Number)
+        private static void AddBtnValueToList(int Number)
         {
 
         }
 
         // 計算記号が入力された場合
-        private static void AddBtnToList(String Str)
+        private static void AddBtnValueToList(String Str)
         {
 
         }
@@ -90,8 +90,8 @@ namespace calculator
             //BottomViewbox.Text = this.ViewerResult;
         }
 
-        // 計算記号を入力した場合の処理
-        private void ClickCalcSymbols(object sender, RoutedEventArgs e)
+        // 計算記号が入力された場合の処理
+        private void ClickCalcSymbolsAction(object sender, RoutedEventArgs e)
         {
 
 
