@@ -83,7 +83,7 @@ namespace calculator
         private void ViewEnteredBtn()
         {
             // 初期化
-            String TopStr = null;
+            this.ViewerTop = null;
 
             // Listに値が格納されていれば発動
             if(this.ListCalcProcess != null)
@@ -91,7 +91,7 @@ namespace calculator
                 // List内に登録されている値をつなげていき、一つの文字列にする
                 foreach(String CalcStr in this.ListCalcProcess)
                 {
-                    TopStr += CalcStr;
+                    this.ViewerTop += CalcStr;
                 }
             }
 
@@ -99,7 +99,7 @@ namespace calculator
             this.ViewerBottom = this.RealtimeEnterNum;
 
             // 上段と下段にそれぞれ反映
-            TopViewbox.Text = TopStr;
+            TopViewbox.Text = this.ViewerTop;
             BottomViewbox.Text = this.ViewerBottom;
         }
 
@@ -141,8 +141,11 @@ namespace calculator
         // 計算記号が入力された場合の処理
         private void ClickCalcSymbols(object sender, RoutedEventArgs e)
         {
-            // すでに数字ボタンが入力されている場合
-            if ( this.BoolEnteredNumber )
+            // 計算記号を初期化
+            this.EnteredCalcSymbols = null;
+
+            // すでに数字か計算記号が入力されている場合
+            if ( this.BoolEnteredNumber || this.BoolEnteredCalc )
             {
                 // 計算式が登録されていなければ、先に入力されていた数値を登録
                 if( this.BoolEnteredCalc == false)
