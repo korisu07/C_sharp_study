@@ -25,6 +25,8 @@ namespace calculator
         public MainWindow()
         {
             InitializeComponent();
+            // 画面に数字を表示
+            ViewEnteredBtn();
         }
 
         //
@@ -48,7 +50,7 @@ namespace calculator
 
 
         // 現在入力されている数字をリアルタイムで更新する変数
-        private String RealtimeEnterNum;
+        private String RealtimeEnterNum = "0";
 
         // 一時的に入力された計算記号を保存しておく変数
         private String EnteredCalcSymbols;
@@ -93,6 +95,9 @@ namespace calculator
                 }
             }
 
+            // 下段に入力中の数字を反映させる
+            this.ViewerBottom = this.RealtimeEnterNum;
+
             // 上段と下段にそれぞれ反映
             TopViewbox.Text = TopStr;
             BottomViewbox.Text = this.ViewerBottom;
@@ -105,6 +110,8 @@ namespace calculator
             // 計算記号がすでに登録されている場合
             if ( this.BoolEnteredCalc )
             {
+                // 格納していた値をリセット
+                this.RealtimeEnterNum = null;
                 // 下段の値をリセット
                 this.ViewerBottom = null;
 
@@ -120,11 +127,8 @@ namespace calculator
             String ClickBtnNumber = ((Button)sender).Content.ToString();
 
             // 入力済みの数字＋新たに入力された数字をくっつける
-            this.RealtimeEnterNum += ClickBtnNumber;
-
-            // 上段と下段に入力中の数字を反映させる
-            this.ViewerTop += ClickBtnNumber;
-            this.ViewerBottom += ClickBtnNumber;
+            int FormatNumber = int.Parse( this.RealtimeEnterNum + ClickBtnNumber );
+            this.RealtimeEnterNum = FormatNumber.ToString();
 
             // 画面に反映
             ViewEnteredBtn();
@@ -145,8 +149,7 @@ namespace calculator
                 {
                     // 数字をリストに追加
                     AddBtnValueToList(this.RealtimeEnterNum);
-                    // 格納していた値をリセット
-                    this.RealtimeEnterNum = null;
+
                     // フラグをリセット
                     this.BoolEnteredNumber = false;
                 }
