@@ -55,9 +55,6 @@ namespace calculator
         // 一時的に入力された計算記号を保存しておく変数
         private String EnteredCalcSymbols;
 
-        // 計算結果を格納する変数
-        private String CalcResult;
-
 
         //
         // ★ON/OFFを判別するための設定
@@ -187,7 +184,7 @@ namespace calculator
             var NewCalcList = new List<string>();
 
             // ボタンが入力されていない場合
-            if( this.ListCalcProcess == null)
+            if( this.ListCalcProcess.Count == 0)
             {
                 // 新たに入力されたボタンの値をListに追加
                 NewCalcList.Add(Str);
