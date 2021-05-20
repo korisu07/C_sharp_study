@@ -46,7 +46,7 @@ namespace calculator
 
         // 数字の入力ケタが確定した際に、数字を格納する
         // 計算記号もここへ
-        private List<string> ListCalcProcess;
+        private List<string> ListCalcProcess = new List<string>();
 
 
         // 現在入力されている数字をリアルタイムで更新する変数
@@ -206,10 +206,35 @@ namespace calculator
 
         private void ResultCalc(object sender, RoutedEventArgs e)
         {
-            // 新たに入力されたボタンを取得し、文字列に変換
-            String Symbols = ((Button)sender).Content.ToString();
-            // それはそれとして「にゃーん」と表示する
-            Console.Write("にゃーん");
+
+            // 計算式が成立している場合
+            if (this.ListCalcProcess.Count >= 3)
+            {
+
+                // 新たに入力されたボタンを取得し、文字列に変換
+                String Symbols = ((Button)sender).Content.ToString();
+
+                // 数字と「＝」をリストに追加
+                AddBtnValueToList(this.RealtimeEnterNum);
+                AddBtnValueToList( " " + Symbols + " " );
+
+                // * ここに計算処理を記述 *
+
+                // 画面に反映
+                ViewEnteredBtn();
+
+                // 格納されている数字をリセット
+                this.RealtimeEnterNum = null;
+
+                // フラグをリセット
+                this.BoolEnteredNumber = false;
+                this.BoolEnteredCalc = false;
+
+            } else
+            {
+                // なにもしない
+                return;
+            }
         }
 
 
