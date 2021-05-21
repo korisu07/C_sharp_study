@@ -69,7 +69,7 @@ namespace calculator
                     } // end switch.
 
             } // end foreach.
-        }
+        } // end func SortCalc.
 
         // 計算を実行するための関数
         private void CalcProcessing()
@@ -106,8 +106,7 @@ namespace calculator
 
                     } // end switch.
 
-
-                }
+                } // end for.
                 else // 数字ではなく記号である場合
                 {
                     // 後の計算のために、計算記号を一時保存
@@ -115,7 +114,7 @@ namespace calculator
 
                 } // end if.
             } // end foreach.
-        }
+        } // end func CalcProcessing.
 
         // 計算記号を一時的に記憶し、
         // ついでにプログラム上で扱える形式に変換する関数
@@ -129,7 +128,6 @@ namespace calculator
 
                 case "-":
                     this.TemporarySymbol = "-";
-
                     break;
 
                 case "×":
@@ -140,8 +138,8 @@ namespace calculator
                     this.TemporarySymbol = "/";
                     break;
 
-            }
-        }
+            } // end switch.
+        } // end func CheckSymbol.
 
         // 計算を行う関数
         private int FormulaExecute( String CalcSymbol, int Number1, int Number2 )
@@ -169,8 +167,8 @@ namespace calculator
             }
             return Result;
 
-        }
+        } // end func FormulaExecute.
 
-    }
+    } // end partial class MainWindow : Window.
 
-}
+} // namespace calculator.
