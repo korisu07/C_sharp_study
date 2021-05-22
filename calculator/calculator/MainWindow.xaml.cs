@@ -29,6 +29,8 @@ namespace calculator
             ViewEnteredBtn();
         }
 
+        private const string ResultSymbol = " = ";
+
         //
         // ★表示に関する設定
         //
@@ -46,7 +48,7 @@ namespace calculator
 
         // 数字の入力ケタが確定した際に、数字を格納する
         // 計算記号もここへ
-        protected List<string> ListCalcProcess = new List<string>();
+        public List<string> ListCalcProcess = new List<string>();
 
 
         // 現在入力されている数字をリアルタイムで更新する変数
@@ -235,39 +237,72 @@ namespace calculator
             
         }
 
+        // 「=」ボタンを押した場合の処理
         private void ResultCalc(object sender, RoutedEventArgs e)
         {
 
-            // 計算式が成立している場合
-            if (this.ListCalcProcess.Count >= 3)
+            // 計算式が成立していれば発動
+            if ( this.ListCalcProcess.Count >= 2 )
             {
 
-                // 新たに入力されたボタンを取得し、文字列に変換
-                String Symbols = ((Button)sender).Content.ToString();
+                // 数字が入力中の状態である場合のみ発動
+                if (this.BoolEnteredNumber)
+                {
+                    // 数字をリストに追加
+                    AddBtnValueToList(this.RealtimeEnterNum);
 
-                // 数字と「＝」をリストに追加
-                AddBtnValueToList(this.RealtimeEnterNum);
-                AddBtnValueToList( " " + Symbols + " " );
+                } //end if, Bool is ON.
+
+
+                // = をリストに追加
+                AddBtnValueToList( ResultSymbol );
 
                 // * ここに計算処理を記述 *
 
                 // 画面に反映
                 ViewEnteredBtn();
+                // 内部の値をリセット
+                ResetInternalData();
 
-                // 格納されている数字をリセット
-                this.RealtimeEnterNum = null;
-
-                // フラグをリセット
-                this.BoolEnteredNumber = false;
-                this.BoolEnteredCalc = false;
-
-            } else
+            } else // 条件を満たさない場合
             {
                 // なにもしない
                 return;
             }
         }
 
+        // 内部の値をリセットするための処理
+        private void ResetInternalData()
+        {
+            // 格納されている数字をリセット
+            this.RealtimeEnterNum = null;
+            this.EnteredCalcSymbols = null;
+
+            // フラグをリセット
+            this.BoolEnteredNumber = false;
+            this.BoolEnteredCalc = false;
+            this.BoolEnteredBrackets = false;
+        } // end func Reset.
+
+        // ACボタンを押したときの処理
+        private void ResetAll(object sender, RoutedEventArgs e)
+        {
+            // 内部のデータをリセット
+            ResetInternalData();
+
+            // リストを削除
+            this.ListCalcProcess.Clear();
+            // リストを再度初期化
+            this.ListCalcProcess = new List<string>();
+
+            // 画面に表示するデータも初期化
+            this.ViewerTop = null;
+            this.ViewerBottom = null;
+
+            // 画面に反映
+            ViewEnteredBtn();
+
+        } // end func ResetAll.
 
     }
 }
