@@ -46,7 +46,7 @@ namespace calculator
 
         // 数字の入力ケタが確定した際に、数字を格納する
         // 計算記号もここへ
-        private List<string> ListCalcProcess = new List<string>();
+        protected List<string> ListCalcProcess = new List<string>();
 
 
         // 現在入力されている数字をリアルタイムで更新する変数
@@ -68,7 +68,7 @@ namespace calculator
         private bool BoolEnteredCalc = false;
 
         // 先頭の括弧がすでに入力されているかを判別する
-        private bool BoolEnteredbrackets = false;
+        private bool BoolEnteredBrackets = false;
 
 
         //
@@ -172,6 +172,40 @@ namespace calculator
             }
 
         }
+
+        // 括弧ボタンをクリックした場合の処理
+        private void ClickBrackets(object sender, RoutedEventArgs e)
+        {
+            // 新たに入力されたボタンを取得し、文字列に変換
+            String ClickBtnbrackets = ((Button)sender).Content.ToString();
+
+            // 括弧をリストに追加
+            AddBtnValueToList( ClickBtnbrackets );
+
+
+            // 括弧の登録状況で分岐
+            // 括弧の先頭が登録されていない場合
+            if (this.BoolEnteredBrackets == false)
+            {
+                // 括弧が登録されたフラグをONにする
+                this.BoolEnteredBrackets = true;
+
+                // ボタンの表示を切り替え
+                ((Button)sender).Content = ")";
+
+            }
+            else
+            { //すでに先頭の括弧が登録されている場合
+
+                // 括弧が登録されたフラグをOFFにする
+                this.BoolEnteredBrackets = false;
+
+                // ボタンの表示を切り替え
+                ((Button)sender).Content = "(";
+
+            } // end if and else.
+
+        } // end func ClickBrackets.
 
         // 入力された値をListに格納する処理
         // ★発動タイミング

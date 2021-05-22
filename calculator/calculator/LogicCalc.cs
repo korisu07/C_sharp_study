@@ -16,7 +16,7 @@ using System.Windows.Threading;
 
 namespace calculator
 {
-    public partial class MainWindow : Window
+    public class LogicCalc : MainWindow
     {
         // 計算結果を一時的に格納する変数
         private int TemporaryNumber;
@@ -28,48 +28,36 @@ namespace calculator
         private bool BoolSwitchBrackets = false;
 
 
-        // ふりわけるための関数
-        private void SortCalc()
+        // 括弧があるかどうかを判断するための関数
+        private void Brackets(String CalcStr )
         {
-            foreach ( String CalcStr in this.ListCalcProcess )
+            // 括弧かどうかを判定
+            switch ( CalcStr )
             {
+                // はじめ括弧である場合
+                case "(":
 
-                    // 括弧かどうかを判定
-                    switch ( CalcStr )
-                    {
-                        // はじめ括弧である場合
-                        case "(":
+                    //フラグをON
+                    this.BoolSwitchBrackets = true;
+                    break;
 
-                            //フラグをON
-                            this.BoolSwitchBrackets = true;
-                            break;
+                // おわり括弧である場合
+                case ")":
 
-                        // おわり括弧である場合
-                        case ")":
-
-                            // フラグをOFF
-                            this.BoolSwitchBrackets = false;
-                            break;
+                    // フラグをOFF
+                    this.BoolSwitchBrackets = false;
+                    break;
 
 
-                    // 数字や計算記号である場合
-                    default:
-                        // 括弧の中の計算式である場合
-                        if ( this.BoolSwitchBrackets )
-                        {
-                            // *ここに計算の実行文を追加*
-                        }
-                        else // そうでない場合
-                        {
-                            // 数字を一時保存
-                            this.TemporaryCalcList.Add(CalcStr);
-                        }
-                            break;
+                // 数字や計算記号である場合
+                default:
+                    // なにもしない
+                    break;
                        
-                    } // end switch.
+            } // end switch.
 
-            } // end foreach.
-        } // end func SortCalc.
+        } // end func Brackets.
+
 
         // 計算を実行するための関数
         private void CalcProcessing()
