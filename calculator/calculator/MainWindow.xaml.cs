@@ -74,7 +74,7 @@ namespace calculator
 
 
         //
-        // ★関数
+        // ★表示に関する処理
         //
 
         // 入力された数字や計算式を、画面上に表示する処理
@@ -100,114 +100,12 @@ namespace calculator
             // 上段と下段にそれぞれ反映
             TopViewbox.Text = this.ViewerTop;
             BottomViewbox.Text = this.ViewerBottom;
-        }
 
-        // 押したボタンに設定されている数字を取得して、
-        // 数字ボタンが入力された場合の処理
-        private void ClickNumberAction(object sender, RoutedEventArgs e)
-        {
-            // 計算記号がすでに登録されている場合
-            if ( this.BoolEnteredCalc )
-            {
-                // 格納していた値をリセット
-                this.RealtimeEnterNum = null;
-                // 下段の値をリセット
-                this.ViewerBottom = null;
+        } // end method ViewEnteredBtn.
 
-                // 計算記号をリストに追加
-                AddBtnValueToList( this.EnteredCalcSymbols );
-                // 計算記号をリセット
-                this.EnteredCalcSymbols = null;
-                // フラグをリセット
-                this.BoolEnteredCalc = false;
-            }
-
-            // 新たに入力された数字を取得し、文字列に変換
-            String ClickBtnNumber = ((Button)sender).Content.ToString();
-
-            // 入力済みの数字＋新たに入力された数字をくっつける
-            int FormatNumber = int.Parse( this.RealtimeEnterNum + ClickBtnNumber );
-            this.RealtimeEnterNum = FormatNumber.ToString();
-
-            // 画面に反映
-            ViewEnteredBtn();
-            // 数字が登録されているフラグをON
-            this.BoolEnteredNumber = true;
-
-        } // end void ClickNumberAction.
-
-
-        // 計算記号が入力された場合の処理
-        private void ClickCalcSymbols(object sender, RoutedEventArgs e)
-        {
-            // 計算記号を初期化
-            this.EnteredCalcSymbols = null;
-
-            // すでに数字か計算記号が入力されている場合
-            if ( this.BoolEnteredNumber || this.BoolEnteredCalc )
-            {
-                // 計算式が登録されていなければ、先に入力されていた数値を登録
-                if( this.BoolEnteredCalc == false)
-                {
-                    // 数字をリストに追加
-                    AddBtnValueToList(this.RealtimeEnterNum);
-
-                    // フラグをリセット
-                    this.BoolEnteredNumber = false;
-                }
-
-                // 新たに入力されたボタンを取得し、文字列に変換
-                String Symbols = ((Button)sender).Content.ToString();
-                // 計算記号を、変数へ格納する
-                this.EnteredCalcSymbols =  " " + Symbols + " ";
-
-                // 画面に反映
-                ViewEnteredBtn();
-                // 計算記号が登録されているフラグをON
-                this.BoolEnteredCalc = true;
-
-            } //なにも入力されていない場合
-            else 
-            {
-                // なにもしない
-                return;
-            }
-
-        }
-
-        // 括弧ボタンをクリックした場合の処理
-        private void ClickBrackets(object sender, RoutedEventArgs e)
-        {
-            // 新たに入力されたボタンを取得し、文字列に変換
-            String ClickBtnbrackets = ((Button)sender).Content.ToString();
-
-            // 括弧をリストに追加
-            AddBtnValueToList( ClickBtnbrackets );
-
-
-            // 括弧の登録状況で分岐
-            // 括弧の先頭が登録されていない場合
-            if (this.BoolEnteredBrackets == false)
-            {
-                // 括弧が登録されたフラグをONにする
-                this.BoolEnteredBrackets = true;
-
-                // ボタンの表示を切り替え
-                ((Button)sender).Content = ")";
-
-            }
-            else
-            { //すでに先頭の括弧が登録されている場合
-
-                // 括弧が登録されたフラグをOFFにする
-                this.BoolEnteredBrackets = false;
-
-                // ボタンの表示を切り替え
-                ((Button)sender).Content = "(";
-
-            } // end if and else.
-
-        } // end func ClickBrackets.
+        //
+        // ★内部のデータに関する処理
+        //
 
         // 入力された値をListに格納する処理
         // ★発動タイミング
@@ -234,8 +132,121 @@ namespace calculator
             }
 
             this.ListCalcProcess = NewCalcList;
-            
-        }
+
+        } // end method AddBtnValueToList.
+
+
+        //
+        // ★ボタンに関する処理
+        //
+
+        // 押したボタンに設定されている数字を取得して、
+        // 数字ボタンが入力された場合の処理
+        private void ClickNumberAction(object sender, RoutedEventArgs e)
+        {
+            // 計算記号がすでに登録されている場合
+            if (this.BoolEnteredCalc)
+            {
+                // 格納していた値をリセット
+                this.RealtimeEnterNum = null;
+                // 下段の値をリセット
+                this.ViewerBottom = null;
+
+                // 計算記号をリストに追加
+                AddBtnValueToList(this.EnteredCalcSymbols);
+                // 計算記号をリセット
+                this.EnteredCalcSymbols = null;
+                // フラグをリセット
+                this.BoolEnteredCalc = false;
+            }
+
+            // 新たに入力された数字を取得し、文字列に変換
+            String ClickBtnNumber = ((Button)sender).Content.ToString();
+
+            // 入力済みの数字＋新たに入力された数字をくっつける
+            int FormatNumber = int.Parse(this.RealtimeEnterNum + ClickBtnNumber);
+            this.RealtimeEnterNum = FormatNumber.ToString();
+
+            // 画面に反映
+            ViewEnteredBtn();
+            // 数字が登録されているフラグをON
+            this.BoolEnteredNumber = true;
+
+        } // end method ClickNumberAction.
+
+
+        // 計算記号が入力された場合の処理
+        private void ClickCalcSymbols(object sender, RoutedEventArgs e)
+        {
+            // 計算記号を初期化
+            this.EnteredCalcSymbols = null;
+
+            // すでに数字か計算記号が入力されている場合
+            if (this.BoolEnteredNumber || this.BoolEnteredCalc)
+            {
+                // 計算式が登録されていなければ、先に入力されていた数値を登録
+                if (this.BoolEnteredCalc == false)
+                {
+                    // 数字をリストに追加
+                    AddBtnValueToList(this.RealtimeEnterNum);
+
+                    // フラグをリセット
+                    this.BoolEnteredNumber = false;
+                }
+
+                // 新たに入力されたボタンを取得し、文字列に変換
+                String Symbols = ((Button)sender).Content.ToString();
+                // 計算記号を、変数へ格納する
+                this.EnteredCalcSymbols = " " + Symbols + " ";
+
+                // 画面に反映
+                ViewEnteredBtn();
+                // 計算記号が登録されているフラグをON
+                this.BoolEnteredCalc = true;
+
+            } //なにも入力されていない場合
+            else
+            {
+                // なにもしない
+                return;
+            }
+
+        } // end method ClickCalcSymbols.
+
+        // 括弧ボタンをクリックした場合の処理
+        private void ClickBrackets(object sender, RoutedEventArgs e)
+        {
+            // 新たに入力されたボタンを取得し、文字列に変換
+            String ClickBtnbrackets = ((Button)sender).Content.ToString();
+
+            // 括弧をリストに追加
+            AddBtnValueToList(ClickBtnbrackets);
+
+
+            // 括弧の登録状況で分岐
+            // 括弧の先頭が登録されていない場合
+            if (this.BoolEnteredBrackets == false)
+            {
+                // 括弧が登録されたフラグをONにする
+                this.BoolEnteredBrackets = true;
+
+                // ボタンの表示を切り替え
+                ((Button)sender).Content = ")";
+
+            }
+            else
+            { //すでに先頭の括弧が登録されている場合
+
+                // 括弧が登録されたフラグをOFFにする
+                this.BoolEnteredBrackets = false;
+
+                // ボタンの表示を切り替え
+                ((Button)sender).Content = "(";
+
+            } // end if and else.
+
+        } // end method ClickBrackets.
+
 
         // 「=」ボタンを押した場合の処理
         private void ResultCalc(object sender, RoutedEventArgs e)
@@ -269,7 +280,8 @@ namespace calculator
                 // なにもしない
                 return;
             }
-        }
+        } // end method ResultCalc.
+
 
         // 内部の値をリセットするための処理
         private void ResetInternalData()
@@ -302,7 +314,7 @@ namespace calculator
             // 画面に反映
             ViewEnteredBtn();
 
-        } // end func ResetAll.
+        } // end method ResetAll.
 
     }
 }
