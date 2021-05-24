@@ -69,8 +69,8 @@ namespace calculator
         // 計算式が入力されているかを判別する
         private bool BoolEnteredCalc = false;
 
-        // 先頭の括弧がすでに入力されているかを判別する
-        private bool BoolEnteredBrackets = false;
+        // 括弧ボタンの表示切り替えを制御する
+        private bool BoolControlBracketsBtn = false;
 
 
         //
@@ -226,34 +226,50 @@ namespace calculator
         // 括弧ボタンをクリックした場合の処理
         private void ClickBrackets(object sender, RoutedEventArgs e)
         {
-            // 新たに入力されたボタンを取得し、文字列に変換
-            String ClickBtnbrackets = ((Button)sender).Content.ToString();
-
-            // 括弧をリストに追加
-            AddBtnValueToList(ClickBtnbrackets);
-
-
             // 括弧の登録状況で分岐
-            // 括弧の先頭が登録されていない場合
-            if (this.BoolEnteredBrackets == false)
+
+            // 括弧の先頭が登録されておらず、
+            // かつ直前の入力が記号である場合
+            if (this.BoolControlBracketsBtn == false && this.BoolEnteredCalc)
             {
+                // 新たに入力されたボタンを取得し、文字列に変換
+                String ClickBtnbrackets = ((Button)sender).Content.ToString();
+                // 括弧をリストに追加
+                AddBtnValueToList(ClickBtnbrackets);
+
+
                 // 括弧が登録されたフラグをONにする
-                this.BoolEnteredBrackets = true;
+                this.BoolControlBracketsBtn = true;
 
                 // ボタンの表示を切り替え
                 ((Button)sender).Content = ")";
 
             }
-            else
-            { //すでに先頭の括弧が登録されている場合
+            // すでに先頭の括弧が登録されていて
+            // かつ、直前の登録が数字である場合
+            else if( this.BoolControlBracketsBtn && this.BoolEnteredNumber )
+            {
+                // 直前に入力されていた数字をリストに追加
+                AddBtnValueToList(this.RealtimeEnterNum);
+                // リセット
+                this.RealtimeEnterNum = null;
+
+                // 新たに入力されたボタンを取得し、文字列に変換
+                String ClickBtnbrackets = ((Button)sender).Content.ToString();
+                // 括弧をリストに追加
+                AddBtnValueToList(ClickBtnbrackets);
+
 
                 // 括弧が登録されたフラグをOFFにする
-                this.BoolEnteredBrackets = false;
+                this.BoolControlBracketsBtn = false;
 
                 // ボタンの表示を切り替え
                 ((Button)sender).Content = "(";
 
             } // end if and else.
+
+            // 画面に反映
+            ViewEnteredBtn();
 
         } // end method ClickBrackets.
 
@@ -271,8 +287,6 @@ namespace calculator
 
             } //end if, Bool is ON.
 
-            Logic.TemporaryCalcList.AddRange( this.ListCalcProcess );
-
 
             // 計算式が成立していれば発動
             if ( this.ListCalcProcess.Count >= 3 )
@@ -280,6 +294,14 @@ namespace calculator
                 // = をリストに追加
                 AddBtnValueToList( ResultSymbol );
 
+                // まずは、括弧があるかどうかを判定し、
+                // ふりわける
+                foreach (String CalcStr in this.ListCalcProcess)
+                {
+                    Logic.BracketsCalc( CalcStr );
+                } // end foreach.
+
+                // ふりわけが終わった最終の計算式を処理
                 Logic.LastCalc();
 
                 String Result = Logic.TemporaryNumber.ToString();
@@ -310,7 +332,7 @@ namespace calculator
             // フラグをリセット
             this.BoolEnteredNumber = false;
             this.BoolEnteredCalc = false;
-            this.BoolEnteredBrackets = false;
+            this.BoolControlBracketsBtn = false;
         } // end func Reset.
 
         // ACボタンを押したときの処理

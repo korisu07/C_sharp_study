@@ -19,21 +19,66 @@ namespace calculator
     public class LogicCalc : MainWindow
     {
         // 計算結果を一時的に格納する変数
-        internal int TemporaryNumber;
+        internal int TemporaryNumber = 0;
 
         private String TemporarySymbol;
 
-        internal List<String> TemporaryCalcList = new List<String>();
+        private List<String> TemporaryCalcList = new List<String>();
 
-        private bool BoolSwitchBrackets = false;
+        private List<String> BracksTemporaryCalcList = new List<String>();
+
+        // 配列に括弧が含まれており
+        // 以降の値が括弧内の式であることを判定するためのBool値
+        private bool BoolEnclosedInBrackets = false;
+
+        // 括弧の終わりが入力されたことを示し、
+        // カッコ内の式を処理しはじめるためのBool値
+        private bool BoolEndBrackets = false;
+
+        internal void BracketsCalc(String CalcStr)
+        {
+            SwitchBrackets( CalcStr );
+            AllocateValue( CalcStr );
+
+        }// end method BracketsCalc.
 
         internal void LastCalc()
         {
-            CalcProcessing();
-        }
+            CalcProcessing( this.TemporaryCalcList );
 
-        // 括弧があるかどうかを判断するための関数
-        private void Brackets(String CalcStr )
+        }// end method LastCalc.
+
+        // スイッチの状態によって、括弧があるかどうかを判断し、
+        // 現在が括弧内の式であるならば先に計算を行う
+        private void AllocateValue(String CalcStr)
+        {
+            // 先頭の括弧が登録されており、かつまだ中身の計算が途中である場合
+            if( this.BoolEnclosedInBrackets )
+            {
+                this.BracksTemporaryCalcList.Add(CalcStr);
+            } // 後尾の括弧が登録されており、括弧内の計算がまだ処理されていない場合
+            else if ( this.BoolEndBrackets )
+            {
+                CalcProcessing(this.BracksTemporaryCalcList);
+
+                // 計算がすべて終わったら、最終計算用のリストに結果を格納する
+                this.TemporaryCalcList.Add( this.TemporaryNumber.ToString() );
+
+                // リセット
+                this.TemporaryNumber = 0;
+                // フラグを解除
+                this.BoolEndBrackets = false;
+
+            } else // 括弧が関係ない場合
+            {
+                // 最終計算用のリストに値を格納する
+                this.TemporaryCalcList.Add(CalcStr);
+            }
+        }// end method AllocateValue.
+
+
+        // 括弧が登録されているかどうかを判断するための関数
+        private void SwitchBrackets( String CalcStr )
         {
             // 括弧かどうかを判定
             switch ( CalcStr )
@@ -42,14 +87,16 @@ namespace calculator
                 case "(":
 
                     //フラグをON
-                    this.BoolSwitchBrackets = true;
+                    this.BoolEnclosedInBrackets = true;
                     break;
 
                 // おわり括弧である場合
                 case ")":
 
                     // フラグをOFF
-                    this.BoolSwitchBrackets = false;
+                    this.BoolEnclosedInBrackets = false;
+                    // 括弧の終わりが入力されたフラグをONにする
+                    this.BoolEndBrackets = true;
                     break;
 
 
@@ -60,54 +107,38 @@ namespace calculator
                        
             } // end switch.
 
-        } // end func Brackets.
+        } // end func SwitchBracket.
 
 
-        // 計算を実行するための関数
-        private void CalcProcessing()
+        // 値を振り分け、計算を実行するための関数
+        private void CalcProcessing(List<string> CalcList)
         {
-            for (int i = 0; i < this.TemporaryCalcList.Count; i++)
+            foreach (String CalcStr in CalcList)
             {
-                // 呼び出した配列の値を変数へ
-                String CalcStr = this.TemporaryCalcList[i];
 
                 // 呼び出した配列の値が数字である場合
                 if (int.TryParse(CalcStr, out int Number))
                 {
-                    // 何番目の配列かを判定
-                    switch (i)
-                    {
-                        // はじめの配列である場合
-                        case 0:
-                            // 数字を一時保存
-                            this.TemporaryNumber = Number;
-                            break;
+                    // 計算を実行
+                    FormulaExecute( Number );
 
-                        // 式の途中の数字である場合
-                        default:
-                            // 計算を実行
-                            FormulaExecute(Number, this.TemporarySymbol);
-
-                            break;
-
-                    } // end switch.
-
-                } // end for.
+                }
                 else // 数字ではなく記号である場合
                 {
                     // 後の計算のために、計算記号を一時保存
                     this.TemporarySymbol = CalcStr;
 
                 } // end if.
-            } // end foreach.
+            }
+
         } // end func CalcProcessing.
 
 
-        // 計算を行う関数
-        private void FormulaExecute(int Number, String CalcSymbol)
+        // 事前に保存されている数値と、新しく入力された数値の計算を行う処理
+        private void FormulaExecute(int Number)
         {
 
-            switch ( CalcSymbol )
+            switch ( this.TemporarySymbol )
             {
                 case "+":
                     this.TemporaryNumber += Number;
@@ -125,9 +156,13 @@ namespace calculator
                     this.TemporaryNumber /= Number;
                     break;
 
+                default:
+                    this.TemporaryNumber = Number;
+                    break;
+
             }
 
-            // 一時保存した計算記号をリセット
+            // 計算が完了した後に、一時保存した計算記号をリセット
             this.TemporarySymbol = null;
 
 
