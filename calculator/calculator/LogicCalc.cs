@@ -19,14 +19,18 @@ namespace calculator
     public class LogicCalc : MainWindow
     {
         // 計算結果を一時的に格納する変数
-        private int TemporaryNumber;
+        internal int TemporaryNumber;
 
         private String TemporarySymbol;
 
-        private List<String> TemporaryCalcList = new List<String>();
+        internal List<String> TemporaryCalcList = new List<String>();
 
         private bool BoolSwitchBrackets = false;
 
+        internal void LastCalc()
+        {
+            CalcProcessing();
+        }
 
         // 括弧があるかどうかを判断するための関数
         private void Brackets(String CalcStr )
@@ -82,13 +86,7 @@ namespace calculator
                         // 式の途中の数字である場合
                         default:
                             // 計算を実行
-                            int Temp = FormulaExecute(this.TemporarySymbol, this.TemporaryNumber, Number);
-
-                            // 計算結果を一時保存
-                            this.TemporaryNumber = Temp;
-
-                            // 一時保存した計算記号をリセット
-                            this.TemporarySymbol = null;
+                            FormulaExecute(Number, this.TemporarySymbol);
 
                             break;
 
@@ -98,62 +96,40 @@ namespace calculator
                 else // 数字ではなく記号である場合
                 {
                     // 後の計算のために、計算記号を一時保存
-                    CheckSymbol(CalcStr);
+                    this.TemporarySymbol = CalcStr;
 
                 } // end if.
             } // end foreach.
         } // end func CalcProcessing.
 
-        // 計算記号を一時的に記憶し、
-        // ついでにプログラム上で扱える形式に変換する関数
-        private void CheckSymbol( String CalcSymbol )
-        {
-            switch (CalcSymbol)
-            {
-                case "+":
-                    this.TemporarySymbol = "+";
-                    break;
-
-                case "-":
-                    this.TemporarySymbol = "-";
-                    break;
-
-                case "×":
-                    this.TemporarySymbol = "*";
-                    break;
-
-                case "÷":
-                    this.TemporarySymbol = "/";
-                    break;
-
-            } // end switch.
-        } // end func CheckSymbol.
 
         // 計算を行う関数
-        private int FormulaExecute( String CalcSymbol, int Number1, int Number2 )
+        private void FormulaExecute(int Number, String CalcSymbol)
         {
-            int Result = 0;
 
             switch ( CalcSymbol )
             {
                 case "+":
-                    Result = Number1 + Number2;
+                    this.TemporaryNumber += Number;
                     break;
 
                 case "-":
-                    Result = Number1 - Number2;
+                    this.TemporaryNumber -= Number;
                     break;
 
-                case "*":
-                    Result = Number1 * Number2;
+                case "×":
+                    this.TemporaryNumber *= Number;
                     break;
 
-                case "/":
-                    Result = Number1 / Number2;
+                case "÷":
+                    this.TemporaryNumber /= Number;
                     break;
 
             }
-            return Result;
+
+            // 一時保存した計算記号をリセット
+            this.TemporarySymbol = null;
+
 
         } // end func FormulaExecute.
 

@@ -90,7 +90,8 @@ namespace calculator
                 // List内に登録されている値をつなげていき、一つの文字列にする
                 foreach(String CalcStr in this.ListCalcProcess)
                 {
-                    this.ViewerTop += CalcStr;
+                    String ViewStr = CalcStr + " ";
+                    this.ViewerTop += ViewStr;
                 }
             }
 
@@ -152,8 +153,6 @@ namespace calculator
                 // 下段の値をリセット
                 this.ViewerBottom = null;
 
-                // 計算記号をリストに追加
-                AddBtnValueToList(this.EnteredCalcSymbols);
                 // 計算記号をリセット
                 this.EnteredCalcSymbols = null;
                 // フラグをリセット
@@ -192,12 +191,23 @@ namespace calculator
 
                     // フラグをリセット
                     this.BoolEnteredNumber = false;
+                } // 先に計算記号が登録されており、それを変更したい場合
+                else if (this.BoolEnteredNumber == false) {
+
+                    // 変更したい記号はリストの最後尾に登録されているため、
+                    // 一番うしろのリストを参照し、それを削除する
+                    int ListCount = this.ListCalcProcess.Count - 1;
+
+                    this.ListCalcProcess.RemoveAt( ListCount );
                 }
 
                 // 新たに入力されたボタンを取得し、文字列に変換
                 String Symbols = ((Button)sender).Content.ToString();
                 // 計算記号を、変数へ格納する
-                this.EnteredCalcSymbols = " " + Symbols + " ";
+                this.EnteredCalcSymbols = Symbols;
+
+                // 計算記号をリストに追加
+                AddBtnValueToList( this.EnteredCalcSymbols );
 
                 // 画面に反映
                 ViewEnteredBtn();
@@ -251,24 +261,31 @@ namespace calculator
         // 「=」ボタンを押した場合の処理
         private void ResultCalc(object sender, RoutedEventArgs e)
         {
+            var Logic = new LogicCalc();
+
+            // 数字が入力中の状態である場合のみ発動
+            if (this.BoolEnteredNumber)
+            {
+                // 数字をリストに追加
+                AddBtnValueToList(this.RealtimeEnterNum);
+
+            } //end if, Bool is ON.
+
+            Logic.TemporaryCalcList.AddRange( this.ListCalcProcess );
+
 
             // 計算式が成立していれば発動
-            if ( this.ListCalcProcess.Count >= 2 )
+            if ( this.ListCalcProcess.Count >= 3 )
             {
-
-                // 数字が入力中の状態である場合のみ発動
-                if (this.BoolEnteredNumber)
-                {
-                    // 数字をリストに追加
-                    AddBtnValueToList(this.RealtimeEnterNum);
-
-                } //end if, Bool is ON.
-
-
                 // = をリストに追加
                 AddBtnValueToList( ResultSymbol );
 
-                // * ここに計算処理を記述 *
+                Logic.LastCalc();
+
+                String Result = Logic.TemporaryNumber.ToString();
+
+                AddBtnValueToList( Result );
+                this.ViewerBottom = Result;
 
                 // 画面に反映
                 ViewEnteredBtn();
