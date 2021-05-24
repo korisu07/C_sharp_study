@@ -19,13 +19,18 @@ namespace calculator
     public class LogicCalc : MainWindow
     {
         // 計算結果を一時的に格納する変数
-        private int TemporaryNumber;
+        internal int TemporaryNumber;
 
+        private String TemporarySymbol;
 
-        private List<String> TemporaryCalcList = new List<String>();
+        internal List<String> TemporaryCalcList = new List<String>();
 
         private bool BoolSwitchBrackets = false;
 
+        internal void LastCalc()
+        {
+            CalcProcessing();
+        }
 
         // 括弧があるかどうかを判断するための関数
         private void Brackets(String CalcStr )
@@ -58,77 +63,73 @@ namespace calculator
         } // end func Brackets.
 
 
-        //// 計算を実行するための関数
-        //private void CalcProcessing()
-        //{
-        //    for (int i = 0; i < this.TemporaryCalcList.Count; i++)
-        //    {
-        //        // 呼び出した配列の値を変数へ
-        //        String CalcStr = this.TemporaryCalcList[i];
+        // 計算を実行するための関数
+        private void CalcProcessing()
+        {
+            for (int i = 0; i < this.TemporaryCalcList.Count; i++)
+            {
+                // 呼び出した配列の値を変数へ
+                String CalcStr = this.TemporaryCalcList[i];
 
-        //        // 呼び出した配列の値が数字である場合
-        //        if (int.TryParse(CalcStr, out int Number))
-        //        {
-        //            // 何番目の配列かを判定
-        //            switch (i)
-        //            {
-        //                // はじめの配列である場合
-        //                case 0:
-        //                    // 数字を一時保存
-        //                    this.TemporaryNumber = Number;
-        //                    break;
+                // 呼び出した配列の値が数字である場合
+                if (int.TryParse(CalcStr, out int Number))
+                {
+                    // 何番目の配列かを判定
+                    switch (i)
+                    {
+                        // はじめの配列である場合
+                        case 0:
+                            // 数字を一時保存
+                            this.TemporaryNumber = Number;
+                            break;
 
-        //                // 式の途中の数字である場合
-        //                default:
-        //                    // 計算を実行
-        //                    int Temp = FormulaExecute(this.TemporarySymbol, this.TemporaryNumber, Number);
+                        // 式の途中の数字である場合
+                        default:
+                            // 計算を実行
+                            FormulaExecute(Number, this.TemporarySymbol);
 
-        //                    // 計算結果を一時保存
-        //                    this.TemporaryNumber = Temp;
+                            break;
 
-        //                    // 一時保存した計算記号をリセット
-        //                    this.TemporarySymbol = null;
+                    } // end switch.
 
-        //                    break;
+                } // end for.
+                else // 数字ではなく記号である場合
+                {
+                    // 後の計算のために、計算記号を一時保存
+                    this.TemporarySymbol = CalcStr;
 
-        //            } // end switch.
-
-        //        } // end for.
-        //        else // 数字ではなく記号である場合
-        //        {
-        //            // 後の計算のために、計算記号を一時保存
-        //            CheckSymbol(CalcStr);
-
-        //        } // end if.
-        //    } // end foreach.
-        //} // end func CalcProcessing.
+                } // end if.
+            } // end foreach.
+        } // end func CalcProcessing.
 
 
         // 計算を行う関数
-        internal int FormulaExecute(int Number1, String CalcSymbol, int Number2 )
+        private void FormulaExecute(int Number, String CalcSymbol)
         {
-            int Result = 0;
 
             switch ( CalcSymbol )
             {
                 case "+":
-                    Result = Number1 + Number2;
+                    this.TemporaryNumber += Number;
                     break;
 
                 case "-":
-                    Result = Number1 - Number2;
+                    this.TemporaryNumber -= Number;
                     break;
 
                 case "×":
-                    Result = Number1 * Number2;
+                    this.TemporaryNumber *= Number;
                     break;
 
                 case "÷":
-                    Result = Number1 / Number2;
+                    this.TemporaryNumber /= Number;
                     break;
 
             }
-            return Result;
+
+            // 一時保存した計算記号をリセット
+            this.TemporarySymbol = null;
+
 
         } // end func FormulaExecute.
 
