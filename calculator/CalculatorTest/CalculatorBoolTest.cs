@@ -1,9 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using CalculatorTest;
+
 
 namespace CalculatorTest
 {
     [TestClass]
-    public class UnitTest1
+    public class CalculatorBoolTest
     {
         [TestMethod]
         public void TestMethod1()
