@@ -16,7 +16,7 @@ using System.Windows.Threading;
 
 namespace calculator
 {
-    public class LogicCalc : MainWindow
+    public class LogicCalc : ClickAction
     {
         // 計算結果を一時的に格納する変数
         internal int TemporaryNumber = 0;
