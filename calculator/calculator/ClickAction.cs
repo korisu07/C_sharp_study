@@ -13,12 +13,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using static calculator.MainWindow;
 
 
 namespace calculator
 {
-    public partial class ClickAction : MainWindow
+    public class ClickAction : MainWindow
     {
         
         //
