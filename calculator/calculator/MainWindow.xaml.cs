@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using static System.Console;
 
 
 namespace calculator
@@ -23,6 +22,9 @@ namespace calculator
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        public event EventHandler BtnClickEvent;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,6 +33,7 @@ namespace calculator
             ViewerTopWindow();
             ViewerBottomWindow();
         }
+
 
         protected const string ResultSymbol = "=";
 
@@ -151,15 +154,46 @@ namespace calculator
                 }
             }
 
+            // 画面の上段へテキストを反映させる
+            TopViewbox.Text = this.TopText;
 
-        } // end method ViewEnteredBtn.
+        } // end method ViewTopWindow.
 
         protected void ViewerBottomWindow()
         {
 
             // 下段に入力中の数字を反映させる
             this.BottomText = this.RealtimeEnterNum;
+
+            // 画面の下段へテキストを反映させる
+            BottomViewbox.Text = this.BottomText;
+
+        } // end method ViewBottomWindow.
+
+
+        protected virtual void ClickNumberAction(object sender, RoutedEventArgs e)
+        {
+            BtnClickEvent?.Invoke(this, e);
         }
 
+        protected virtual void ClickCalcSymbols(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((Button)sender).Content.ToString());
+        }
+
+        protected virtual void ClickBrackets(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((Button)sender).Content.ToString());
+        }
+
+        protected virtual void ResultCalc(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((Button)sender).Content.ToString());
+        }
+
+        protected virtual void ResetAll(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(((Button)sender).Content.ToString());
+        }
     }
 }
