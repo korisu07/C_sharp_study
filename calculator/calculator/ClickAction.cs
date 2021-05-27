@@ -19,14 +19,14 @@ namespace calculator
 {
     public class ClickAction : MainWindow
     {
-        
+
         //
         // ★ボタンに関する処理
         //
 
         // 押したボタンに設定されている数字を取得して、
         // 数字ボタンが入力された場合の処理
-        protected new void ClickNumberAction(object sender, RoutedEventArgs e)
+        protected override void ClickNumberAction(object sender, RoutedEventArgs e)
         {
             // 計算記号がすでに登録されている場合
             if (base.BoolEnteredCalc)
@@ -60,7 +60,7 @@ namespace calculator
 
 
         // 計算記号が入力された場合の処理
-        protected new void ClickCalcSymbols(object sender, RoutedEventArgs e)
+        protected override void ClickCalcSymbols(object sender, RoutedEventArgs e)
         {
             // 計算記号を初期化
             base.EnteredCalcSymbols = null;
@@ -112,7 +112,7 @@ namespace calculator
         } // end method ClickCalcSymbols.
 
         // 括弧ボタンをクリックした場合の処理
-        private new void ClickBrackets(object sender, RoutedEventArgs e)
+        protected override void ClickBrackets(object sender, RoutedEventArgs e)
         {
             // 括弧の登録状況で分岐
 
@@ -165,7 +165,7 @@ namespace calculator
 
 
         // 「=」ボタンを押した場合の処理
-        private new void ResultCalc(object sender, RoutedEventArgs e)
+        protected override void ResultCalc(object sender, RoutedEventArgs e)
         {
             var Logic = new LogicCalc();
 
@@ -217,7 +217,7 @@ namespace calculator
 
 
         // ACボタンを押したときの処理
-        private new void ResetAll(object sender, RoutedEventArgs e)
+        protected override void ResetAll(object sender, RoutedEventArgs e)
         {
             // 内部のデータをリセット
             ResetInternalData();
