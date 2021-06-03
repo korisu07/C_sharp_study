@@ -11,12 +11,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("CalculatorTest")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("CalcBoolTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
-[assembly: System.Reflection.AssemblyProductAttribute("CalculatorTest")]
-[assembly: System.Reflection.AssemblyTitleAttribute("CalculatorTest")]
+[assembly: System.Reflection.AssemblyProductAttribute("CalcBoolTest")]
+[assembly: System.Reflection.AssemblyTitleAttribute("CalcBoolTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // MSBuild WriteCodeFragment クラスによって生成されました。
